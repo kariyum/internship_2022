@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="./style.css" type="text/css"> -->
+    <style>
+        td, th {
+    border: 1px solid #dddddd;
+    padding: 8px;
+  }
+
+table{
+    width: 80%;
+    margin:auto;
+    text-align: center;
+    border-collapse:collapse;
+}
+tr:nth-child(even) {background-color: #f2f2f2;}
+pre{
+    text-align: left;
+}
+
+.data-group{
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px 5px #ddd;
+    margin-bottom:2%;
+    margin-top: 2%;
+    min-width: 1400px;
+    padding-bottom: 5%;
+    
+}
+
+#data-tables{
+    display: flex;
+    flex-direction: column;
+    
+    align-items: center;
+}
+/* #next-btn{
+    position:fixed;
+    top: 90%;
+    left: 5%;
+}
+#prev-btn{
+
+} */
+.loading-screen{
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FFF;
+  z-index: 999;
+}
+
+.spinner{
+  font-size: 40px;
+  widtH: 1em;
+  height: 1em;
+  fill: transparent;
+  stroke: #101010;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 125;
+  animation: spinner 4s linear infinite;
+}
+
+@keyframes spinner{
+  0%{
+    stroke-dashoffset: 25;
+    transform: rotate(0deg);
+  }
+  50%{
+    stroke-dashoffset: 125;
+    transform: rotate(720deg);
+  }
+  100%{
+    stroke-dashoffset: 25;
+    transform: rotate(1080deg);
+  }
+}
+
+.spinner > circle{
+  fill: transparent;
+}
+
+.navigation-btns{
+    display: flex;
+    position: fixed;
+    top:90%;
+    left: 1%;
+}
+
+    </style>
+    <title>Document</title>
+</head>
+<body style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+    <h1>Dimension and hierarchy generation</h1>
+    <h2>Load dimensions</h2>
+    <h3>From configuration file</h3>
+    <div style="display: flex;">
+        <input type="file" id="file-input" accept=".csv">
+        <button id="submit-dimension-config-file">Submit</button> 
+        <!-- change the id to submit the dimension config file -->
+        <div id="dimension-spinner" hidden>
+            <div class="loading-screen"  style="margin-left:20px"   >
+                <svg class="spinner" viewBox="0 0 40 40"> 
+                    <circle cx = "20" cy = "20" r = "18" ></circle>
+                </svg>
+            </div>
+        </div>
+    </div>
+    <table id="dimension-table"></table>
+    
+    <h3>From local storage</h3>
+    <h3>Generate data for valid hierarchies</h3>
+    <div style="display: flex;">
+        <input type="file" id="hierarchy-file-input" accept=".csv">
+        <button id="submit-hierarchy-config-file">Print table</button>
+        <button id="download-csv">Download CSV</button>
+        <!-- id => submit hiererchy config file -->
+        <div id="hierarchy-spinner" hidden>
+            <div class="loading-screen" style="margin-left:20px">
+                <svg class="spinner" viewBox="0 0 40 40"> 
+                    <circle cx = "20" cy = "20" r = "18" ></circle>
+                </svg>
+            </div>
+        </div>
+    </div>
+    <div id="data-tables"></div>
+
+    <h3>Validate a single dimension</h3>
+    <input type="text" placeholder="child" id="child-val">
+-->
+    <input type="text" placeholder="parent" id="parent-val">
+    <button id="add">Add</button>
+    <br>
+    <canvas id="screen" style="border: 1px solid; margin:auto"></canvas>
+    <button id="map-id">print map</button>
+    <div id="response"></div>
+    <!-- <button id="get">Get response</button> -->
+    <button id="dimension_check">Validate the dimension</button>
+    <button id="hierarchy_check">Validate hierarchy</button>
+    <div id="container"></div>
+    <!-- <button id="test-request">Send request</button> -->
+    <div class="navigation-btns">
+        <button id="next-btn" hidden>Next</button>
+        <button id="prev-btn" hidden>Previous</button>
+    </div>
+    
+
+</body>
+<script src="./classes/network.js"></script>
+<script src="./engine.js"></script>
+<script src="main.js"></script>
+</html>

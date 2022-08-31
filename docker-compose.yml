@@ -1,0 +1,20 @@
+version: "3"
+services:
+  front:
+    build:
+      context: ./frontier
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+    expose:
+      - 80
+    depends_on:
+      - api
+  api:
+    build:
+      context: ./spark-learning1
+      dockerfile: Dockerfile
+    ports:
+      - 5050:5050
+    expose:
+      - 5050
